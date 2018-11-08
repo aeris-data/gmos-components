@@ -7,7 +7,7 @@ import VueRouter from "vue-router";
 import VeeValidate, { Validator } from "vee-validate";
 import fr from "vee-validate/dist/locale/fr";
 
-import { VueColorPlugin, VueAerisLanguagePlugin } from "aeris-mixins";
+// import { VueColorPlugin, VueAerisLanguagePlugin } from "aeris-mixins";
 
 import GmosCatalogueComponents from "../lib/modules/catalogue/components/gmos-catalogue-components.js";
 import GmosMetadataComponents from "../lib/modules/metadata/components/gmos-metadata-components.js";
@@ -16,10 +16,7 @@ import GmosCatalogueStore from "../lib/modules/catalogue/store/gmos-catalogue-st
 import GmosMetadataStore from "../lib/modules/metadata/store/gmos-metadata-store.js";
 
 import app from "./app.vue";
-// import TaskDisplayComponentTest from "./task-display-component-test.vue";
-// import TasksEditComponentsTest from "./task-edit-component-test.vue";
-// import TasksListComponentsTest from "./tasklist-component-test.vue";
-
+import GmosMetadataDownloadComponentTest from "./gmos-metadata-download-component-test.vue";
 Vue.use(vueCustomElement);
 Vue.use(Vuex);
 Vue.use(VueI18n);
@@ -28,25 +25,33 @@ Vue.use(VueRouter);
 Vue.use(VeeValidate);
 Validator.localize("fr", fr);
 
-Vue.use(VueColorPlugin);
-Vue.use(VueAerisLanguagePlugin);
+// Vue.use(VueColorPlugin);
+// Vue.use(VueAerisLanguagePlugin);
 
 const store = new Vuex.Store({
-    modules: {
-      example: GmosCatalogueStore
+  modules: {
+    example: GmosCatalogueStore
+  }
+});
+
+Vue.use(GmosCatalogueComponents, {
+  store: store
+});
+const router = new VueRouter({
+  mode: "history",
+  routes: [
+    {
+      path: "/metadata-download-path",
+      component: GmosMetadataDownloadComponentTest
     }
-  });
+  ]
+});
 
-  Vue.use(GmosCatalogueComponents, {
-    store: store
-  });
-
-const store = new Vuex.Store({
-    modules: {
-      example: GmosMetadataStore
-    }
-  });
-
-  Vue.use(GmosMetadataComponents, {
-    store: store
-  });
+new Vue({
+  el: "#app",
+  router,
+  template: "<app/>",
+  components: {
+    app
+  }
+}).$mount("#app");
