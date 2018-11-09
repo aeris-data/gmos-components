@@ -17,6 +17,10 @@ import GmosMetadataStore from "../lib/modules/metadata/store/gmos-metadata-store
 
 import app from "./app.vue";
 import GmosMetadataDownloadComponentTest from "./gmos-metadata-download-component-test.vue";
+import GmosMetadataLayoutComponentTest from "./gmos-metadata-layout-component-test.vue";
+import GmosMetadataMdTemplateGmosTimeSeriesMetadataComponentTest from "./gmos-metadata-md-template-gmos-time-series-metadata-component-test.vue";
+import GmosMetadataTimeSeriesMetadataSummaryComponentTest from "./gmos-metadata-time-series-metadata-summary-component-test.vue";
+
 Vue.use(vueCustomElement);
 Vue.use(Vuex);
 Vue.use(VueI18n);
@@ -43,6 +47,18 @@ const router = new VueRouter({
     {
       path: "/metadata-download-path",
       component: GmosMetadataDownloadComponentTest
+    },
+    {
+      path: "/metadata-layout-path",
+      component: GmosMetadataLayoutComponentTest
+    },
+    {
+      path: "/metadata-md-template-gmos-time-series-metadata-path",
+      component: GmosMetadataMdTemplateGmosTimeSeriesMetadataComponentTest
+    },
+    {
+      path: "/metadata-time-series-metadata-summary-path",
+      component: GmosMetadataTimeSeriesMetadataSummaryComponentTest
     }
   ]
 });

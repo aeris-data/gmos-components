@@ -1,9 +1,14 @@
 import GmosMetadataDownloadComponent from "./gmos-metadata-download-component.vue";
+import GmosMetadataLayoutComponent from "./gmos-metadata-layout-component.vue";
 import HelperRegisterModule from "../../helper-register-module";
 
 const tasksComponents = [
   {
     vueComponent: GmosMetadataDownloadComponent,
+    isCustomElement: true
+  },
+  {
+    vueComponent: GmosMetadataLayoutComponent,
     isCustomElement: true
   }
 ];
