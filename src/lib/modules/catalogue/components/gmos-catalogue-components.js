@@ -1,19 +1,9 @@
-// import GmosCatalogueComponent from "./gmos-catalogue-component.vue";
-// import TaskEditComponent from "./task-edit-component.vue";
-// import TaskListComponent from "./task-list-component.vue";
+// import GmosCataloguePlatformSearchCriteriaComponent from "./gmos-catalogue-platform-search-criteria-component.vue";
 // import HelperRegisterModule from "../../helper-register-module";
 
 // const tasksComponents = [
 //   {
-//     vueComponent: GmosCatalogueComponent,
-//     isCustomElement: true
-//   },
-//   {
-//     vueComponent: TaskEditComponent,
-//     isCustomElement: true
-//   },
-//   {
-//     vueComponent: TaskListComponent,
+//     vueComponent: GmosCataloguePlatformSearchCriteriaComponent,
 //     isCustomElement: true
 //   }
 // ];

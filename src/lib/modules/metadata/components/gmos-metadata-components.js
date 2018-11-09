@@ -1,5 +1,7 @@
 import GmosMetadataDownloadComponent from "./gmos-metadata-download-component.vue";
 import GmosMetadataLayoutComponent from "./gmos-metadata-layout-component.vue";
+import GmosMetadataMdTemplateGmosTimeSeriesMetadataComponent from "./gmos-metadata-md-template-gmos-time-series-metadata-component.vue";
+import GmosMetadataTimeSeriesMetadataSummaryComponent from "./gmos-metadata-time-series-metadata-summary-component.vue";
 import HelperRegisterModule from "../../helper-register-module";
 
 const tasksComponents = [
@@ -9,6 +11,14 @@ const tasksComponents = [
   },
   {
     vueComponent: GmosMetadataLayoutComponent,
+    isCustomElement: true
+  },
+  {
+    vueComponent: GmosMetadataMdTemplateGmosTimeSeriesMetadataComponent,
+    isCustomElement: true
+  },
+  {
+    vueComponent: GmosMetadataTimeSeriesMetadataSummaryComponent,
     isCustomElement: true
   }
 ];

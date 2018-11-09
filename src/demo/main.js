@@ -9,10 +9,10 @@ import fr from "vee-validate/dist/locale/fr";
 
 // import { VueColorPlugin, VueAerisLanguagePlugin } from "aeris-mixins";
 
-import GmosCatalogueComponents from "../lib/modules/catalogue/components/gmos-catalogue-components.js";
+// import GmosCatalogueComponents from "../lib/modules/catalogue/components/gmos-catalogue-components.js";
 import GmosMetadataComponents from "../lib/modules/metadata/components/gmos-metadata-components.js";
 
-import GmosCatalogueStore from "../lib/modules/catalogue/store/gmos-catalogue-store.js";
+// import GmosCatalogueStore from "../lib/modules/catalogue/store/gmos-catalogue-store.js";
 import GmosMetadataStore from "../lib/modules/metadata/store/gmos-metadata-store.js";
 
 import app from "./app.vue";
@@ -34,11 +34,11 @@ Validator.localize("fr", fr);
 
 const store = new Vuex.Store({
   modules: {
-    example: GmosCatalogueStore
+    example: GmosMetadataStore
   }
 });
 
-Vue.use(GmosCatalogueComponents, {
+Vue.use(GmosMetadataComponents, {
   store: store
 });
 const router = new VueRouter({

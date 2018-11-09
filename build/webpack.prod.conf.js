@@ -10,8 +10,8 @@ const buildName = PACKAGE.name;
 
 const webpackConfig = merge(baseWebpackConfig, {
   entry: {
-    // task: "./src/lib/modules/catalogue/catalogue-main.js",
-    // task: "./src/lib/modules/metadata/metadata-main.js"
+    task: "./src/lib/modules/catalogue/catalogue-main.js",
+    task: "./src/lib/modules/metadata/metadata-main.js"
   },
   output: {
     path: path.resolve(__dirname, "../dist"),

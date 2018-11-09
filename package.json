@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "aeris-mixins": "latest",
+    "marked": "^0.5.1",
     "node-modules": "^1.0.1",
     "vee-validate": "^2.0.9",
     "vue": "^2.5.2",
