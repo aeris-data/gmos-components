@@ -1,9 +1,9 @@
 <template>
    <div id="app">
       <ul>
-         <!-- <li>
-            <router-link to="/catalogue-platform-search-criteria-path">metadata time series metadata summary</router-link>
-         </li> -->
+         <li>
+            <router-link to="/catalogue-path">catalogue</router-link>
+         </li>
          <li>
             <router-link to="/metadata-download-path">metadata download</router-link>
          </li>

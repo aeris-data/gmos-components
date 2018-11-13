@@ -1,33 +1,38 @@
-// import GmosCataloguePlatformSearchCriteriaComponent from "./gmos-catalogue-platform-search-criteria-component.vue";
-// import HelperRegisterModule from "../../helper-register-module";
+import GmosCataloguePlatformSearchCriteriaComponent from "./criteria/gmos-catalogue-platform-search-criteria-component.vue";
+import GmosThesaurusItemTreeCheckboxLayoutComponent from "./criteria/gmos-thesaurus-item-tree-checkbox-layout-component.vue";
+import HelperRegisterModule from "../../helper-register-module";
 
-// const tasksComponents = [
-//   {
-//     vueComponent: GmosCataloguePlatformSearchCriteriaComponent,
-//     isCustomElement: true
-//   }
-// ];
+const tasksComponents = [
+  {
+    vueComponent: GmosCataloguePlatformSearchCriteriaComponent,
+    isCustomElement: true
+  },
+  {
+    vueComponent: GmosThesaurusItemTreeCheckboxLayoutComponent,
+    isCustomElement: true
+  }
+];
 
-// export default {
-//   install: (Vue, options) => {
-//     if (!window.registredAerisElements) {
-//       window.registredAerisElements = [];
-//     }
+export default {
+  install: (Vue, options) => {
+    if (!window.registredAerisElements) {
+      window.registredAerisElements = [];
+    }
 
-//     let timer = setInterval(function() {
-//       if (
-//         window.registredAerisElements.indexOf("aeris-commons-components-vjs") >
-//         -1
-//       ) {
-//         Vue.use(tasksComponents, {
-//           store: options.store
-//         });
-//         HelperRegisterModule.registerStore(options.store, tasksComponents);
-//         HelperRegisterModule.registerVueComponents(Vue, tasksComponents);
-//         HelperRegisterModule.registerCustomElements(Vue, tasksComponents);
+    let timer = setInterval(function() {
+      if (
+        window.registredAerisElements.indexOf("aeris-commons-components-vjs") >
+        -1
+      ) {
+        Vue.use(tasksComponents, {
+          store: options.store
+        });
+        HelperRegisterModule.registerStore(options.store, tasksComponents);
+        HelperRegisterModule.registerVueComponents(Vue, tasksComponents);
+        HelperRegisterModule.registerCustomElements(Vue, tasksComponents);
 
-//         clearInterval(timer);
-//       }
-//     }, 1000);
-//   }
-// };
+        clearInterval(timer);
+      }
+    }, 1000);
+  }
+};

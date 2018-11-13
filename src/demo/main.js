@@ -9,8 +9,8 @@ import fr from "vee-validate/dist/locale/fr";
 
 // import { VueColorPlugin, VueAerisLanguagePlugin } from "aeris-mixins";
 
-// import GmosCatalogueComponents from "../lib/modules/catalogue/components/gmos-catalogue-components.js";
-import GmosMetadataComponents from "../lib/modules/metadata/components/gmos-metadata-components.js";
+import GmosCatalogueComponents from "../lib/modules/catalogue/components/gmos-catalogue-components.js";
+//import GmosMetadataComponents from "../lib/modules/metadata/components/gmos-metadata-components.js";
 
 // import GmosCatalogueStore from "../lib/modules/catalogue/store/gmos-catalogue-store.js";
 import GmosMetadataStore from "../lib/modules/metadata/store/gmos-metadata-store.js";
@@ -20,6 +20,7 @@ import GmosMetadataDownloadComponentTest from "./gmos-metadata-download-componen
 import GmosMetadataLayoutComponentTest from "./gmos-metadata-layout-component-test.vue";
 import GmosMetadataMdTemplateGmosTimeSeriesMetadataComponentTest from "./gmos-metadata-md-template-gmos-time-series-metadata-component-test.vue";
 import GmosMetadataTimeSeriesMetadataSummaryComponentTest from "./gmos-metadata-time-series-metadata-summary-component-test.vue";
+import GmosCatalogueComponentTest from "./gmos-catalogue-component-test.vue";
 
 Vue.use(vueCustomElement);
 Vue.use(Vuex);
@@ -38,7 +39,7 @@ const store = new Vuex.Store({
   }
 });
 
-Vue.use(GmosMetadataComponents, {
+Vue.use(GmosCatalogueComponents, {
   store: store
 });
 const router = new VueRouter({
@@ -59,6 +60,10 @@ const router = new VueRouter({
     {
       path: "/metadata-time-series-metadata-summary-path",
       component: GmosMetadataTimeSeriesMetadataSummaryComponentTest
+    },
+    {
+      path: "/catalogue-path",
+      component: GmosCatalogueComponentTest
     }
   ]
 });
