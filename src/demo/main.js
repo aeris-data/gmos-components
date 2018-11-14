@@ -21,6 +21,7 @@ import GmosMetadataLayoutComponentTest from "./gmos-metadata-layout-component-te
 import GmosMetadataMdTemplateGmosTimeSeriesMetadataComponentTest from "./gmos-metadata-md-template-gmos-time-series-metadata-component-test.vue";
 import GmosMetadataTimeSeriesMetadataSummaryComponentTest from "./gmos-metadata-time-series-metadata-summary-component-test.vue";
 import GmosCatalogueComponentTest from "./gmos-catalogue-component-test.vue";
+import GmosPlatformSearchCriateriaDeprecatedComponentTest from "./gmos-platform-search-criteria-content-deprecated-component-test.vue";
 
 Vue.use(vueCustomElement);
 Vue.use(Vuex);
@@ -64,6 +65,10 @@ const router = new VueRouter({
     {
       path: "/catalogue-path",
       component: GmosCatalogueComponentTest
+    },
+    {
+      path: "/platform-search-criteria-deprecated-path",
+      component: GmosPlatformSearchCriateriaDeprecatedComponentTest
     }
   ]
 });

@@ -1,5 +1,6 @@
 import GmosCataloguePlatformSearchCriteriaComponent from "./criteria/gmos-catalogue-platform-search-criteria-component.vue";
 import GmosThesaurusItemTreeCheckboxLayoutComponent from "./criteria/gmos-thesaurus-item-tree-checkbox-layout-component.vue";
+import GmosPlatformSearchCriateriaDeprecatedComponentTest from "./criteria/gmos-platform-search-criteria-content-deprecated-component.vue";
 import HelperRegisterModule from "../../helper-register-module";
 
 const tasksComponents = [
@@ -9,6 +10,10 @@ const tasksComponents = [
   },
   {
     vueComponent: GmosThesaurusItemTreeCheckboxLayoutComponent,
+    isCustomElement: true
+  },
+  {
+    vueComponent: GmosPlatformSearchCriateriaDeprecatedComponentTest,
     isCustomElement: true
   }
 ];

@@ -3,7 +3,7 @@
   <aeris-catalog metadata-service="https://sedoo.aeris-data.fr/catalogue/rest/metadatarecette/" program="GMOS" cart-service="https://sedoo.aeris-data.fr/catalogue/rest/shoppingcart" cart-token="gmos" hidemap="true" criteria-header-icon-color="grey" criteria-background-color="#F5F5F5"
     criteria-content-primary-color="grey">
     <div slot="criteria">
-      <gmos-catalogue-platform-search-criteria-component></gmos-catalogue-platform-search-criteria-component>
+      <gmos-catalogue-platform-search-criteria-component meta-service="https://sedoo.aeris-data.fr/gmos-datacenter-rest/rest/metadatarecette/platformnames?program=GMOS" program="GMOS" cart-service="https://sedoo.aeris-data.fr/catalogue/rest/shoppingcart" cart-token="gmos" ></gmos-catalogue-platform-search-criteria-component>
     </div>
     <div slot="buttons-criteria">
       <aeris-catalogue-help-button></aeris-catalogue-help-button>

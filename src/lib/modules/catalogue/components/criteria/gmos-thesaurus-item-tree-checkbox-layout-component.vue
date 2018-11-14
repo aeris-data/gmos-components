@@ -31,17 +31,16 @@
       </main>
     </div>
   </main>
-
 </div>
 </template>
 
 <script>
 export default {
-  name: 'gmos-thesaurus-item-tree-checkbox-layout-component',
+  name: "gmos-thesaurus-item-tree-checkbox-layout-component",
   props: {
     lang: {
       type: String,
-      default: 'en'
+      default: "en"
     },
     name: {
       type: String
@@ -56,37 +55,51 @@ export default {
   },
   watch: {
     lang(value) {
-      this.$i18n.locale = value
+      this.$i18n.locale = value;
     }
   },
   destroyed: function() {
-    document.removeEventListener('aerisTheme', this.aerisThemeListener);
+    document.removeEventListener("aerisTheme", this.aerisThemeListener);
     this.aerisThemeListener = null;
-    document.removeEventListener('aerisCatalogueSearchEvent', this.handleSearchBarListener);
+    document.removeEventListener(
+      "aerisCatalogueSearchEvent",
+      this.handleSearchBarListener
+    );
     this.handleSearchBarListener = null;
-    document.removeEventListener('aerisCatalogueResetEvent', this.handleSearchBarResetListener);
+    document.removeEventListener(
+      "aerisCatalogueResetEvent",
+      this.handleSearchBarResetListener
+    );
     this.handleSearchBarResetListener = null;
   },
   created: function() {
     this.$i18n.locale = this.lang;
     this.aerisThemeListener = this.handleTheme.bind(this);
-    document.addEventListener('aerisTheme', this.aerisThemeListener);
+    document.addEventListener("aerisTheme", this.aerisThemeListener);
     this.handleSearchBarListener = this.handleSearchBarEvent.bind(this);
-    document.addEventListener('aerisCatalogueSearchEvent', this.handleSearchBarListener);
-    this.handleSearchBarResetListener = this.handleSearchBarResetEvent.bind(this);
-    document.addEventListener('aerisCatalogueResetEvent', this.handleSearchBarResetListener);
+    document.addEventListener(
+      "aerisCatalogueSearchEvent",
+      this.handleSearchBarListener
+    );
+    this.handleSearchBarResetListener = this.handleSearchBarResetEvent.bind(
+      this
+    );
+    document.addEventListener(
+      "aerisCatalogueResetEvent",
+      this.handleSearchBarResetListener
+    );
     this.load();
   },
   mounted() {
-    console.log('Aeris thesaurus tree checkbox - created');
-    document.dispatchEvent(new CustomEvent('aerisThemeRequest', {}));
+    console.log("Aeris thesaurus tree checkbox - created");
+    document.dispatchEvent(new CustomEvent("aerisThemeRequest", {}));
   },
   computed: {
     isLoading: function() {
-      return ((this.loading) && (!this.existing))
+      return this.loading && !this.existing;
     },
     isUpdating: function() {
-      return ((this.loading) && (this.existing))
+      return this.loading && this.existing;
     }
   },
   data() {
@@ -100,51 +113,55 @@ export default {
       theme: [],
       existing: false,
       selectedItems: []
-    }
+    };
   },
   methods: {
-	handleTheme: function(theme) {
-    	this.theme = theme;
-    	this.colorBaddges(this.theme);
+    handleTheme: function(theme) {
+      this.theme = theme;
+      this.colorBaddges(this.theme);
     },
     colorBaddges: function(theme) {
-	  if (this.$el.querySelectorAll(".badge")) {
-        this.$el.querySelectorAll(".badge").forEach(el => el.style.background = theme.detail.emphasis);
+      if (this.$el.querySelectorAll(".badge")) {
+        this.$el
+          .querySelectorAll(".badge")
+          .forEach(el => (el.style.background = theme.detail.emphasis));
       }
     },
-    checkFirstLevel(index)  {
+    checkFirstLevel(index) {
       this.items[index].checked = !this.items[index].checked;
-      this.items[index].deployed = this.items[index].checked;
+      // this.items[index].deployed = this.items[index].checked;
       if (this.items[index].thesaurusItems) {
-    	  for (let i = 0; i < this.items[index].thesaurusItems.length; i++) {
-        	  this.checkSecondLevel(index, i, this.items[index].checked);
-    		}
+        for (let i = 0; i < this.items[index].thesaurusItems.length; i++) {
+          this.checkSecondLevel(index, i, this.items[index].checked);
+        }
       }
       // for handle search
       let searchString = this.items[index].search;
       if (this.items[index].checked) {
-    	  this.selectedItems.push(searchString);
+        this.selectedItems.push(searchString);
       } else {
-    	  this.selectedItems.splice(this.selectedItems.indexOf(searchString), 1);
+        this.selectedItems.splice(this.selectedItems.indexOf(searchString), 1);
       }
     },
     toggle(index) {
-      this.items[index].deployed = !this.items[index].deployed;
-      this.$nextTick(function () {
-          // Defer the callback to be executed after the next DOM update cycle
-    	  // otherwise badges won't be visible on first load
-    	  this.colorBaddges(this.theme);
-        })
+      // this.items[index].deployed = !this.items[index].deployed;
+      this.$nextTick(function() {
+        // Defer the callback to be executed after the next DOM update cycle
+        // otherwise badges won't be visible on first load
+        this.colorBaddges(this.theme);
+      });
     },
     load() {
       this.loading = true;
       if (window.localStorage) {
-        let storedValues = window.localStorage.getItem('aeris' + this.name + 'Types');
-        if ((storedValues != null) && (storedValues != "undefined")) {
+        let storedValues = window.localStorage.getItem(
+          "aeris" + this.name + "Types"
+        );
+        if (storedValues != null && storedValues != "undefined") {
           this.items = JSON.parse(storedValues);
           this.existing = true;
         }
-      };
+      }
       // let parentService = document.querySelector('aeris-catalog').attributes.getNamedItem('metadata-service').value;
       // parentService = parentService.endsWith('/') ? parentService + this.type + '/' : parentService + '/' + this.type + '/';
       // let url = this.service || parentService;
@@ -154,71 +171,88 @@ export default {
       //     url += "?program=" + program;
       //   }
       // }
-      console.log("Aeris - load - Appel au serveur")
-      this.$http.get("https://sedoo.aeris-data.fr/gmos-datacenter-rest/rest/metadatarecette/platformnames?program=GMOS", {
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
+      console.log("Aeris - load - Appel au serveur");
+      this.$http
+        .get(
+          "https://sedoo.aeris-data.fr/gmos-datacenter-rest/rest/metadatarecette/platformnames?program=GMOS",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+            }
           }
-        })
-        .then((response) => {
-          this.handleResponse(response)
-        }, (response) => {
-          this.handleError(response)
-        });
+        )
+        .then(
+          response => {
+            this.handleResponse(response);
+          },
+          response => {
+            this.handleError(response);
+          }
+        );
     },
     handleResponse: function(response) {
-      console.log(response)
+      console.log(response);
       this.loading = false;
-      let itemsArray = response.body.map(item => {
-                  return {
-                    checked: false,
-                    deployed: false,
-                    name: item,
-                    search: item
-                  }
-        }).sort(function(a, b){
-           return a.name > b.name ? 1 : a.name < b.name ? -1 : 0;
-        });
-        this.items = itemsArray;
-
-        this.existing = true;
-        if (window.localStorage) {
-          window.localStorage.setItem('aeris' + this.name + 'Types', JSON.stringify(this.items));
-        }
-        this.$nextTick(function () {
-           // Defer the callback to be executed after the next DOM update cycle
-           // otherwise badges won't be visible on first load
-           this.colorBaddges(this.theme);
+      let itemsArray = response.body
+        .map(item => {
+          return {
+            checked: false,
+            deployed: false,
+            name: item,
+            search: item
+          };
         })
+        .sort(function(a, b) {
+          return a.name > b.name ? 1 : a.name < b.name ? -1 : 0;
+        });
+      this.items = itemsArray;
+
+      this.existing = true;
+      if (window.localStorage) {
+        window.localStorage.setItem(
+          "aeris" + this.name + "Types",
+          JSON.stringify(this.items)
+        );
+      }
+      this.$nextTick(function() {
+        // Defer the callback to be executed after the next DOM update cycle
+        // otherwise badges won't be visible on first load
+        this.colorBaddges(this.theme);
+      });
     },
     handleError: function(response) {
       this.loading = false;
-      console.log("Aeris " + this.name + " criteria - Error while accessing server:");
+      console.log(
+        "Aeris " + this.name + " criteria - Error while accessing server:"
+      );
       let error = response.status;
       let message = response.statusText;
-      if (!error) message = 'Can\'t connect to the server';
-      console.log('Error ' + error + ': ' + message);
+      if (!error) message = "Can't connect to the server";
+      console.log("Error " + error + ": " + message);
     },
     handleSearchBarEvent: function(e) {
+      console.log("search");
+      console.log("e.detail", e.detail);
       if (this.selectedItems.length > 0) {
-        e.detail[this.nameSubitems] = this.selectedItems;
+        e.detail.platforms = this.selectedItems;
+        console.log("platforms", e.detail.platforms);
       }
     },
     handleSearchBarResetEvent: function(e) {
-    	let i;
-    	for (i = 0; i < this.items.length; i++) {
-    		this.items[i].checked = true;
-    		this.checkFirstLevel(i);
-    	}
-    	this.selectedItems = [];
+      let i;
+      for (i = 0; i < this.items.length; i++) {
+        this.items[i].checked = true;
+        this.checkFirstLevel(i);
+      }
+      this.selectedItems = [];
     }
   }
-}
+};
 </script>
 <style>
 [data-aeris-thesaurus-item-tree-checkbox-layout] {
-  color: #FAFAFA;
+  color: #fafafa;
 }
 [data-aeris-thesaurus-item-tree-checkbox-layout] .loading-bar {
   padding: 8px 0;
@@ -230,21 +264,23 @@ export default {
   padding: 5px 0;
 }
 [data-aeris-thesaurus-item-tree-checkbox-layout] .second-level {
-  	margin-left: 12px;
-  	padding: 5px 0;
+  margin-left: 12px;
+  padding: 5px 0;
 }
-[data-aeris-thesaurus-item-tree-checkbox-layout] .second-level > div:first-child {
-	display : flex;
-	align-items: flex-start;
-	justify-content: space-between;
+[data-aeris-thesaurus-item-tree-checkbox-layout]
+  .second-level
+  > div:first-child {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 [data-aeris-thesaurus-item-tree-checkbox-layout] label {
-	overflow-wrap:break-word;
-	-webkit-hyphens: auto;
-	-moz-hyphens: auto;
-	-ms-hyphens: auto;
-	-o-hyphens: auto;
-	hyphens:auto;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto;
 }
 [data-aeris-thesaurus-item-tree-checkbox-layout] .third-level {
   margin-left: 15px;

@@ -16,6 +16,9 @@
         <li>
             <router-link to="/metadata-time-series-metadata-summary-path">metadata time series metadata summary</router-link>
          </li>
+        <li>
+            <router-link to="/platform-search-criteria-deprecated-path">platform search</router-link>
+         </li>
       </ul>
       <div>
          <router-view class="view"/>
